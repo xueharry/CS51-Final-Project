@@ -15,5 +15,8 @@ def loadMovieLens(path='/data/ml-100k'):
         preferences.setdefault(user, {})
         preferences[user][movies[movieid]] = float(rating)
     return preferences
+
+# Change ratings from 1-5 scale to Like/Dislike
+def changeRatings();
     
     
