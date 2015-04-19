@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # Load in data from MovieLens
-def loadMovieLens(path='/data/ml-100k'):
+def loadMovieLens(path= '/data/ml-100k'):
     
     # Get titles
     movies = {}
@@ -17,6 +17,7 @@ def loadMovieLens(path='/data/ml-100k'):
     return preferences
 
 # Change ratings from 1-5 scale to Like/Dislike
-def changeRatings();
-    
+#def changeRatings():
+
+
     
