@@ -1,4 +1,7 @@
-# -*- coding: utf-8 -*-
+# Pearson correlation coefficient based recommendation system from Programming
+# Collective Intelligence by Toby Segaran. For testing purposes only.
+
+
 # A dictionary of movie critics and their ratings of a small
 # set of movies
 critics={'Lisa Rose': {'Lady in the Water': 2.5, 'Snakes on a Plane': 3.5,
@@ -19,7 +22,7 @@ critics={'Lisa Rose': {'Lady in the Water': 2.5, 'Snakes on a Plane': 3.5,
  'The Night Listener': 3.0, 'Superman Returns': 5.0, 'You, Me and Dupree': 3.5},
 'Toby': {'Snakes on a Plane':4.5,'You, Me and Dupree':1.0,'Superman Returns':4.0}}
 
-'''from math import sqrt
+from math import sqrt
 
 # Returns a distance-based similarity score for person1 and person2
 def sim_distance(prefs,person1,person2):
@@ -36,7 +39,7 @@ def sim_distance(prefs,person1,person2):
   sum_of_squares=sum([pow(prefs[person1][item]-prefs[person2][item],2)
                       for item in si])
 
-  return 1/(1+sqrt(sum_of_squares))'''
+  return 1/(1+sqrt(sum_of_squares))
   
 # Returns the Pearson correlation coefficient for p1 and p2
 def sim_pearson(prefs,p1,p2):
@@ -111,22 +114,3 @@ def getRecommendations(prefs,person,similarity=sim_pearson):
   rankings.sort(  )
   rankings.reverse(  )
   return rankings
-
-# Load in data from MovieLens
-def loadMovieLens(path='/data/ml-100k'):
-    
-    # Get titles
-    movies = {}
-    for line in open(path + '/u.item'):
-        (id,title) = line.split('|')[0:2]
-        movies[id] = title
-        
-    # Load data
-    preferences = {}
-    for line in open(path+'/u.data'):
-        (user,movieid,rating,ts) = line.split('\t')
-        preferences.setdefault(user, {})
-        preferences[user][movies[movieid]] = float(rating)
-    return preferences
-    
-    
