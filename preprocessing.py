@@ -1,8 +1,8 @@
-# -*- coding: utf-8 -*-
 import os
 
+# -*- coding: utf-8 -*-
 # Load in data from MovieLens
-def loadMovieLens(path= os.path.join(os.path.dirname(__file__), '/data/ml-100k')):
+def loadMovieLens(path=os.getcwd()+'/data/ml-100k'):
     
     # Get titles
     movies = {}
