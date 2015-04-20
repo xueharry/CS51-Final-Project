@@ -56,4 +56,32 @@ def separate_Training_testing (data):
     and training individuals
     '''
     
-## 
+#For testing it is necesary to classify the numerical values of the rankings 
+#of the movies into two categories Like, Dislike
+def assging_class (dataset) :
+    ''' 
+    Outputs a dataset of the movies but with either like or 
+    dislike assigned instead of a numerical ranking
+    '''
+def calculate_precision (dataset, dataset2) :
+    '''
+    this function takes in a dataset completed/ real and the 
+    dataset that the classifier returned then it counts the number of liked 
+    itemsthat were assigned to the "like class" and the number of items 
+    that were assigned to the class. Then it divides the liked items assigned 
+    to like over the number of items assigned to the class
+    ''' 
+    
+def calculate_recall (dataset1,dataset2):
+    ''' this function behaves similary to the function above except that it
+    divides the number of liked items assigned to the class over the total 
+    number of liked items 
+    ''' 
+#This function combines both precision and recall to measure the performance 
+#of the algorithm with more accuracy
+def optimize (press, recall): 
+    ''' Input is the values of precision and recall and output the 
+    result of 2*precision*recall/precision+recall
+    this value will be passed to testing class to figure the accuracy of the 
+    logarithm
+    '''
