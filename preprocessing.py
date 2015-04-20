@@ -1,6 +1,8 @@
+import os
+
 # -*- coding: utf-8 -*-
 # Load in data from MovieLens
-def loadMovieLens(path='/data/ml-100k'):
+def loadMovieLens(path=os.getcwd()+'/data/ml-100k'):
     
     # Get titles
     movies = {}
@@ -15,3 +17,9 @@ def loadMovieLens(path='/data/ml-100k'):
         preferences.setdefault(user, {})
         preferences[user][movies[movieid]] = float(rating)
     return preferences
+
+# Change ratings from 1-5 scale to Like/Dislike
+#def changeRatings():
+
+
+    
