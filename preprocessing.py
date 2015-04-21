@@ -16,19 +16,20 @@ def loadMovieLens(path=os.getcwd()+'/data/ml-100k'):
         (user,movieid,rating,ts) = line.split('\t')
         preferences.setdefault(user, {})
         preferences[user][movies[movieid]] = float(rating)
+
     return preferences
 
 # Change ratings from 1-5 scale to Like/Dislike given inputted cutoff
 def changeRatings(preferences,cutoff):
-    
     # Iterate over preferences
     for critic, movies in preferences.iteritems() :
         for movie, rating in movies.iteritems() :
-            if rating >= cutoff:
-                rating = 1.0
+            if movies[movie] >= cutoff:
+                movies[movie] = 1.0
             else:
-                rating = 0.0
+                movies[movie] = 0.0
     return preferences
+ 
 
 
     
