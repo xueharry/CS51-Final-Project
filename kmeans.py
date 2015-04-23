@@ -38,9 +38,8 @@ class kmeans:
 
 	def distance(self, i, j):
 		"Distance from point i to centroid j"
-		sum_squares = sum([pow(i-j),2]):
-		for 
-
+		for n in range (1,len(matrix[0])):
+			sum_squares += [pow(matrix[n][i]-self.centroid[j][n-1]),2]
 		return math.sqrt(sum_squares)
 
 	def kCluster(self):
