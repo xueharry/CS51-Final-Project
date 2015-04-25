@@ -1,8 +1,9 @@
+import os
 import math 
 import numpy as np
 import pandas as pd
 
-def load_data(path=os.getcwd()+'/data/ml-100k'):
+def load_data(path=os.getcwd()+'/data/ml-100k/'):
 
     # Read in file
     rnames = ['user', 'movie', 'rating', 'timestamp']
@@ -15,10 +16,10 @@ def load_data(path=os.getcwd()+'/data/ml-100k'):
 
     # Fill in matrix from data
     for index in df.index: 
-    user = df['user'][index] 
-    movie = df['movie'][index] 
-    rating = df['rating'][index] 
-    matrix[user][movie] = rating
+        user = df['user'][index] 
+        movie = df['movie'][index] 
+        rating = df['rating'][index] 
+        matrix[user][movie] = rating
 
-return matrix
+    return matrix
 
