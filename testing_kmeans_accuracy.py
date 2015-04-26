@@ -8,6 +8,12 @@ import preprocessing
 # Prepare data
 base = preprocessing.load_data (path=os.getcwd()+'fake base')
 test = preprocessing.load_data (path=os.getcwd()+'fake test')
+
+for l_list in b_list  
+    for rating_val in l_list 
+        
+        
+
 '''
 MAGALY: HOW TO BREAK UP A LIST
 base_head, base_tail = base[0], base[1:]
