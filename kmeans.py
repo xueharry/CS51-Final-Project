@@ -23,19 +23,22 @@ class kmeans:
 		# Initialize with random centroids
 		random.seed()
 		self.centroids = [[self.data[rand][m] for m in range(self.num_movies)]
-							for rand in random.sample(range(self.num_users, self.k))]
+							for rand in random.sample(range(self.num_users), self.k)]
 		self.assignPointsToCluster()
 
 	def calcCentroid(self, clus):
 		"Calculates centroid for a given cluster"
-		# Get list of all users in cluster 
+		# Get list of all users in cluster
+		# Returns [0,3,4,...] the indices of users who are in cluster clus 
 		users = [i for i, j in enumerate(self.cluster_num) if j == clus]
+		# Returns [self.data[0],self.data[3]...] list of lists of movies for above users
 		users_list = [self.data[u] for u in users]
 
 		# Calculate centroid by averaging ratings for each of the movies across users
 		# in the cluster
-		centroid = [sum(i) / len(users_list) for i in zip(*users_list)]
+		centroid = [float(sum(i)) / float(len(users_list)) for i in zip(*users_list)]
 
+		# Returns list of average ratings for each movie across cluster
 		return centroid
 
 	def updateCentroids(self):
@@ -44,7 +47,7 @@ class kmeans:
 
 	def assignPointToCluster(self,i):
 		"Assign point to cluster"
-		minRange = sys.maxsize 
+		minRange = float(sys.maxsize) 
 		clusterNum = -1
 
 		# Find closest cluster 
@@ -54,11 +57,11 @@ class kmeans:
 				minRange = d
 				clusterNum = centroid
 		# Keep track of number of points changed
-		if clusterNum != self.cluster_num(i):
+		if clusterNum != self.cluster_num[i]:
 			self.num_points_changed += 1
 
 		# Update sum of square error
-		self.sse += min * min
+		self.sse += minRange * minRange 
 
 		return clusterNum
 
@@ -96,7 +99,7 @@ class kmeans:
 			print("SSE: %f" % self.sse)
 
 # Run k-means (move this to separate file later)
-km = kmeans(preprocessing.load_data(), 1000)
+km = kmeans(preprocessing.load_data(), 100)
 km.kCluster()
 
 
