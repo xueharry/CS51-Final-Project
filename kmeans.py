@@ -32,7 +32,7 @@ class kmeans:
 		# Returns [0,3,4,...] the indices of users who are in cluster clus 
 		users = [i for i, j in enumerate(self.cluster_num) if j == clus]
 		if len(users) == 0:
-		    centroid = self.centroids[clus]
+		    centroid = [self.data[random.randint(0,self.num_users-1)][m] for m in range(self.num_movies)]
 		else:
       		    # Returns [self.data[0],self.data[3]...] list of lists of movies for above users
       		    users_list = [self.data[u] for u in users]
@@ -73,10 +73,10 @@ class kmeans:
 		return clusterNum
 
 	def assignPointsToCluster(self):
-	    "Assign each of the points to cluster"
-	    self.num_points_changed = 0
-	    self.sse = 0
-	    self.cluster_num = [self.assignPointToCluster(i)
+	       "Assign each of the points to cluster"
+	       self.num_points_changed = 0
+	       self.sse = 0
+	       self.cluster_num = [self.assignPointToCluster(i)
 	    					for i in range(self.num_users)]
 
 	def distance(self, u, c):
