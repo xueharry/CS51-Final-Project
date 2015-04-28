@@ -25,7 +25,6 @@ class kmeans:
   		random.seed()
   		#self.centroids = self.data[np.random.choice(np.arange(self.num_users), self.k, False)]
   		self.centroids = np.zeros((k,self.data.shape[1]))
-  		self.assignPointsToCluster()
 
 	def updateCentroids(self):
 		"Update the centroid of each cluster"
@@ -33,12 +32,12 @@ class kmeans:
 		#for c in xrange(self.k): 
 		#np.mean([self.data[p] for p in xrange(self.k) if self.cluster_num[p] == c], axis=0, out=self.centroids[c])
 		for c in xrange(self.k):
-		    np.mean(np.array([self.data[p] for p in xrange(self.num_users) if self.cluster_num[p]==c]), axis=0, out=self.centroids[c])
+	            self.centroids[c] = np.mean([self.data[p] for p in xrange(self.num_users) if self.cluster_num[p]==c], axis=0)
 
 	def assignPointsToCluster(self):
 	       "Assign each of the points to cluster"
 	       self.old_cluster_num = self.cluster_num
-	       self.cluster_num = [np.argmin([np.linalg.norm(p-c) for c in self.centroids]) for p in self.data]
+	       self.cluster_num = np.array([np.argmin([np.linalg.norm(p-c) for c in self.centroids]) for p in self.data])
 	       
 	def kCluster(self):
 		"Performs clustering"
@@ -51,9 +50,10 @@ class kmeans:
 			self.iteration += 1
 
 			# Check whether clustering is done
-			if np.array_equal(self.old_cluster_num, self.cluster_num) or (self.iteration > 10):
+			changes = np.sum((self.old_cluster_num - self.cluster_num) != 0)
+			if changes == 0:
 				done = True
-			print(self.cluster_num)
+			print("Changes: %d" % changes)
 
 # Run k-means (move this to separate file later)
 km = kmeans(nppreprocessing.load_data(), 100)
