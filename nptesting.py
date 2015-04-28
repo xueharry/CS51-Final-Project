@@ -21,7 +21,7 @@ x = np.array([1.2,5.0,2.1])
 y = np.array([3.4,4.2,1.0])
 
 def rmsd (m1, m2):
-      return np.sqrt((((num1.astype(float))-(num2.astype(float)))**2)/2)
+      return np.sqrt((((m1.astype(float))-(m2.astype(float)))**2)/2)
       
 def clean_up (m1, m2):
       for i, (a, b) in enumerate(zip(m1, m2)):
