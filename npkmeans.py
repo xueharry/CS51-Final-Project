@@ -29,10 +29,11 @@ class kmeans:
 
 	def updateCentroids(self):
 		"Update the centroid of each cluster"
-		for c in xrange(self.k): 
-		    np.mean(
-                        [self.data[p] for p in xrange(self.k) if self.cluster_num[p] == c],
-                        axis=0, out=self.centroids[c])
+		#self.centroids = [self.data[self.cluster_num == self.k].mean(axis = 0) for n in range(self.k)]
+		#for c in xrange(self.k): 
+		#np.mean([self.data[p] for p in xrange(self.k) if self.cluster_num[p] == c], axis=0, out=self.centroids[c])
+		for c in xrange(self.k):
+		    np.mean([self.data[p] for p in xrange(self.num_users) if self.cluster_num[p]==c], axis=0, out=self.centroids[c])
 
 	def assignPointsToCluster(self):
 	       "Assign each of the points to cluster"
