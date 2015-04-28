@@ -54,6 +54,7 @@ class kmeans:
 			if changes == 0:
 				done = True
 			print("Changes: %d" % changes)
+		print self.cluster_num
 
 # Run k-means (move this to separate file later)
 km = kmeans(nppreprocessing.load_data(), 100)
