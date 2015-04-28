@@ -105,7 +105,7 @@ class kmeans:
 		print("SSE: %f" % self.sse)
 
 # Run k-means (move this to separate file later)
-km = kmeans(preprocessing.load_data(), 100)
+km = kmeans(preprocessing.load_data("u.data",0), 100)
 km.kCluster()
 
 
