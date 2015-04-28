@@ -1,34 +1,44 @@
 import math
 import random
-'''import NPTEST_PROCESSING SEPARATE FILE'''
-'''import NPKMEANS SEPARATE FILE'''
+import preprocessing
+import testing_preprocessing
+from npkmeans import *
 import sys
 import numpy as np
 
-        # Initiate
-	def __init__(self, matrix, test_matrix):
-		"Initializer takes in a user-movie matrix and the number of clusters"
-                self.data = matrix
-                self.test_matrix = test_matrix
-
 # Find predictions from test_user's cluster
-for x in range(len(self.test_matrix))
-    user_cluster = self.cluster_num(test_matrix[x])
-    predictions = self.centroids(user_cluster)
+def find_centroid (user_id):
+    "Gets the user's kmeans cluster by user id and accesses the centroid (with mean ratings for every movie) for predictions"
+    km = kmeans(preprocessing.load_data("u.data", 1), 100)
+    kmeans_return = km.kCluster()
+    user_cluster = kmeans_return[0][user_id-1]
+    predict = kmeans_return[1][user_id-1]
+    return predict
 
-# Test results using root-mean-square deviation
-x = np.array([1.2,5.0,2.1])
-y = np.array([3.4,4.2,1.0])
-
-def rmsd (m1, m2):
-      return np.sqrt((((m1.astype(float))-(m2.astype(float)))**2)/2)
+# Evaluate accuracy of predictions
+def rmsd_element (num1, num2):
+    "Finds the rmsd between two movie ratings"
+    addition = 0.0
+    return ((num1.astype(float))-(num2.astype(float)))**2
       
-def clean_up (m1, m2):
-      for i, (a, b) in enumerate(zip(m1, m2)):
-          if b != 0.0 then rmsd(a,b); i++
-          return i
+def one_user_rmsd (m1, m2):
+    "Finds the average rmsd for all of one user's movie ratings"
+    for index, (a, b) in enumerate(zip(m1, m2)):
+        if b != 0:
+            addition = addition+rmsd_element(a, b)
+            ++i
+        rmsd_inside = addition/i
+        rmsd = np.sqrt(rmsd_inside)
+        return rmsd
 
-# Calculate!
-math = clean_up (matrix, test_matrix)
-mean = (math.sum())/i
-return mean
+def calculate ():
+    "Finds the average rmsd for all users"
+    # kmeans_matrix, test_matrix
+    average_rmsd = 0.0
+    test_matrix = testing_preprocessing.load_data("u1.test", 1)
+    for test_user in test_matrix:
+        actual = test_matrix[test_user]
+        predictions = find_centroid(test_user)
+        average_rmsd = average_rmsd+(one_user_rmsd (predictions, actual))
+    final_evaluation = average_rmsd/(len(test_matrix))
+    print final_evaluation
