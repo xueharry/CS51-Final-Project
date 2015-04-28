@@ -1,34 +1,38 @@
 import math
 import random
-'''import NPTEST_PROCESSING SEPARATE FILE'''
-'''import NPKMEANS SEPARATE FILE'''
+import nppreprocessing
+import npkmeans
 import sys
 import numpy as np
 
-        # Initiate
-	def __init__(self, matrix, test_matrix):
-		"Initializer takes in a user-movie matrix and the number of clusters"
-                self.data = matrix
-                self.test_matrix = test_matrix
-
 # Find predictions from test_user's cluster
-for x in range(len(self.test_matrix))
-    user_cluster = self.cluster_num(test_matrix[x])
+def find_centroid (user_id):
+    "Gets the user's kmeans cluster by user id and accesses the centroid (with mean ratings for every movie) for predictions"
+    user_cluster = self.cluster_num(user_id)
     predictions = self.centroids(user_cluster)
+    return predictions
 
-# Test results using root-mean-square deviation
-x = np.array([1.2,5.0,2.1])
-y = np.array([3.4,4.2,1.0])
-
-def rmsd (m1, m2):
-      return np.sqrt((((m1.astype(float))-(m2.astype(float)))**2)/2)
+# Evaluate accuracy of predictions
+def rmsd (num1, num2):
+    "Finds the rmsd between two movie ratings"
+    addition = 0.0
+    return np.sqrt((((num1.astype(float))-(num2.astype(float)))**2)/2)
       
-def clean_up (m1, m2):
-      for i, (a, b) in enumerate(zip(m1, m2)):
-          if b != 0.0 then rmsd(a,b); i++
-          return i
+def one_user_rmsd (m1, m2):
+    "Finds the average rmsd for all of one user's movie ratings"
+    for index, (a, b) in enumerate(zip(m1, m2)):
+        if b != 0:
+            addition = addition+(rmsd(a, b))
+            ++i
+        return addition/i
 
-# Calculate!
-math = clean_up (matrix, test_matrix)
-mean = (math.sum())/i
-return mean
+def calculate (kmeans_matrix, test_matrix):
+    "Finds the average rmsd for all users"
+    average_rmsd = 0.0
+    for test_user in test_matrix:
+        actual = text_matrix[user]
+        for mean in matrix:
+            predictions = matrix[find_centroid(test_user)]
+            average_rmsd = average_rmsd+(one_user_rmsd (predictions, actual))
+    final_evaluation = average_rmsd/(len(test_matrix))
+    print final_evaluation
