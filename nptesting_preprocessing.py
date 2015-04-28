@@ -23,5 +23,5 @@ def load_data(path=os.getcwd()+'/data/ml-100k/'):
         
     # matrix = [[1,2,3,4],[4,3,3,1],[5,5,5,5],[1,4,3,2]]
 
-    matrix = np.array(m)
-    return np.array(matrix)
+    test_matrix = np.array(m)
+    return test_matrix
