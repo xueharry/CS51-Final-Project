@@ -3,14 +3,18 @@ import math
 import numpy as np
 import pandas as pd
 
-def load_data(path=os.getcwd()+'/data/ml-100k/'):
+def load_data(file_name, npy, path=os.getcwd()+'/data/ml-100k/'):
 
     # Read in file
     rnames = ['user', 'movie', 'rating', 'timestamp']
-    df = pd.read_table(path+'u.data', sep='\t', header=None, names=rnames)
+    df = pd.read_table(path+file_name, sep='\t', header=None, names=rnames)
+    
+    # Determine the number of unique users and movies
+    num_users = len(np.unique(df[['user']].values))
+    num_movies = len(np.unique(df[['movie']].values))
 
-    # Matrix of size 1000 x 1700 (rows x cols)
-    matrix = [[3 for _ in range(1682)] for _ in range(943)]
+    # Matrix of size num_users x num_movies (rows x cols)
+    matrix = [[3 for _ in range(num_movies)] for _ in range(num_users)]
 
     ### Update the average rating for user, normalize to remove bias 
 
@@ -23,5 +27,13 @@ def load_data(path=os.getcwd()+'/data/ml-100k/'):
         
     # matrix = [[1,2,3,4],[4,3,3,1],[5,5,5,5],[1,4,3,2]]
 
-    return matrix
+    if npy==1:
+        print('numpy kmeans')
+        m = np.array(matrix)
+        m.astype(float)
+    else:
+        print('slow kmeans')
+        m=matrix
+    
+    return m
 
