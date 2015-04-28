@@ -10,7 +10,7 @@ class kmeans:
 	def __init__(self, matrix, k):
 		"Initializer takes in a user-movie matrix and the number of clusters"
                 self.data = matrix
-	        self.k = k
+                self.k = k
   		self.iteration = 0
   		self.num_points_changed = 0 
   		#self.sse = 0
@@ -33,7 +33,7 @@ class kmeans:
 		#for c in xrange(self.k): 
 		#np.mean([self.data[p] for p in xrange(self.k) if self.cluster_num[p] == c], axis=0, out=self.centroids[c])
 		for c in xrange(self.k):
-		    np.mean([self.data[p] for p in xrange(self.num_users) if self.cluster_num[p]==c], axis=0, out=self.centroids[c])
+		    np.mean(np.array([self.data[p] for p in xrange(self.num_users) if self.cluster_num[p]==c]), axis=0, out=self.centroids[c])
 
 	def assignPointsToCluster(self):
 	       "Assign each of the points to cluster"
