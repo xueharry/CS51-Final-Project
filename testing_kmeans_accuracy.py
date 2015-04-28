@@ -1,10 +1,9 @@
-class testing 
-
 import math
 import numpy as np
 import pandas as pd
 import preprocessing
 
+<<<<<<< HEAD
 # Prepare data
 base = preprocessing.load_data (path=os.getcwd()+'fake base')
 test = preprocessing.load_data (path=os.getcwd()+'fake test')
@@ -29,26 +28,32 @@ or
 
 Question 2 is test list preprocessed as well?
 test file would have some empty stuff 
+=======
+class testing:
+    "Tests accuracy of kmeans algorithm"
+        
+    # Get preprocessed data from u.base and u.test
+    base = preprocessing.load_data (path=os.getcwd()+'fake base')
+        "should be a list of the means from k-mean clustering and each one's ratings"
+    test = preprocessing.load_data (path=os.getcwd()+'fake test')
+>>>>>>> origin/master
 
-What can we do to fix it? I am thinking about preprosesing the test part different
-because in order to compare it to each of the rankings in the list it must be at the 
-same position so if we have the 
-base_head = 
+    # Match test_user with his/her row in base matrix (list of rating lists)
+        "NOTE: NEED TO CHANGE BASED ON OUTPUT OF RUNNING K-MEANS ALGORITHM- currently assuming looks like [[1;3;5], [2;1;2]...]"
+        "method: use index (the user's id) 
+    for test_user, test_rating in test
+        predicted_ratings = base[test_user]
 
-# Check which movies test_user has actually watched
-for test_user, test_movie, test_rating in test.iteritems() :
-test_data = tuple('test_movie', test_rating) for test_user
+    # Compare test_user's actual ratings and those predicted by base
 
-# Return predicted ratings for test_user's watched/rated movies from running the algorithm on the matrix
-for mean_user, mean_movie, mean_rating in RESULT_OF_K_MEANS_ALGORITHM[base].iteritems() :
-mean_data = tuple('mean_movie', mean_rating) for mean_user'''
-# Match test_user with his/her row in base matrix
-for test_user, test_rating in test.iteritems () :
-for base_user, base_rating in base.iteritems
-return
-# Compare test_user's actual ratings and those predicted by base
-base[user
-# Find predicted ratings for movies test_user has already watched
-# Test algorithm's predictions against test_user's actual ratings using Root-Mean-Square Deviation formula
-def rmsd (num1, num2) :
-sqrt(
+        # Test algorithm's prediction against test_user's actual rating for one movie using Root-Mean-Square Deviation formula       
+        def rmsd (num1, num2) :
+            "where num1 are predictions and num2 are actual"
+            return np.sqrt(((num1 - num2) **2).mean())
+        
+        # Call rmsd formula on all recommended movie ratings returned
+        for predicted_ratings_head, predicted_ratings_tail = predicted_ratings[0], predicted_ratings[1:]
+            for test_ratings_head, test_ratings_tail = test[0], test[1:]
+                sum(rmsd (predicted_ratings_head, test_ratings_head))
+                
+                "NOTE: THIS PART IS ALL WRONG- need to figure out how to do apply rmsd formula to every prediction/actual movie match"
