@@ -8,7 +8,7 @@ import numpy as np
 
 # Evaluate accuracy of predictions
 def rmsd_element (num1, num2):
-    "Finds the rmsd between two movie ratings"
+    "Finds the inside of rmsd formula between two movie ratings"
     return ((float(num1))-(float(num2)))**2
       
 def one_user_rmsd (m1, m2):
@@ -17,11 +17,18 @@ def one_user_rmsd (m1, m2):
     i = 0
     for index, (a, b) in enumerate(zip(m1, m2)):
         if b.any != 0:
+        # if np.nonzero(b):
+        #if 0 in (a,b):
+            continue
+        else:
             addition = addition+rmsd_element(a, b)
-            ++i
-    rmsd_inside = addition/float(i)
-    rmsd = np.sqrt(rmsd_inside)
-    return rmsd
+            i = i+1
+    if i==0:
+        rmsd_inside = 0
+    else:
+        rmsd_inside = addition/float(i)
+    user_rmsd = np.sqrt(rmsd_inside)
+    return user_rmsd
 
 def calculate ():
     "Finds the average rmsd for all users"
@@ -30,23 +37,26 @@ def calculate ():
     user_cluster = kmeans_return[0]
     centroids = kmeans_return[1]
 
-    average_rmsd = 0.0
+    total_rmsd = 0.0
     test_matrix = testing_preprocessing.load_data("u1.test", 1)
     number_test_users = 0
-    print test_matrix
     for test_user in test_matrix:
         actual = test_matrix[test_user-1]
         predictions = centroids[user_cluster[test_user-1]]
-        average_rmsd = average_rmsd+(one_user_rmsd (predictions, actual))
-        number_test_users = 1+number_test_users
-        "fix this- gives total number of users, not number of users who rated in test file"
-    final_evaluation = average_rmsd/float(number_test_users)
+        one_rmsd = one_user_rmsd (predictions, actual)
+        total_rmsd = total_rmsd+one_rmsd
+        if one_rmsd==0:
+            continue
+        else:
+            number_test_users = number_test_users+1
+            "attempted to fix users to be number of users in test file, not number of users in array (which is all of them)"
+    final_evaluation = total_rmsd/float(number_test_users)
     print "actual"
     print actual
     print "predictions"
     print predictions
-    print "average_rmsd"
-    print average_rmsd
+    print "total_rmsd"
+    print total_rmsd
     print "number test users"
     print number_test_users
     print "final_evaluation"
