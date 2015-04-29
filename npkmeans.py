@@ -45,9 +45,10 @@ class kmeans:
 				done = True
 			print("Changes: %d" % changes)
 		print self.cluster_num
+		return (self.cluster_num, self.centroids)
 
 # Run k-means (move this to separate file later)
-km = kmeans(preprocessing.load_data("u.data", 1), 100)
-km.kCluster()
+# km = kmeans(preprocessing.load_data("u.data", 1, 3), 100)
+# km.kCluster()
 
 
