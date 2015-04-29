@@ -1,6 +1,6 @@
 import math
 import random
-import nppreprocessing
+import preprocessing
 import npkmeans
 import sys
 import numpy as np
@@ -8,8 +8,10 @@ import numpy as np
 # Find predictions from test_user's cluster
 def find_centroid (user_id):
     "Gets the user's kmeans cluster by user id and accesses the centroid (with mean ratings for every movie) for predictions"
-    user_cluster = self.cluster_num(user_id)
-    predictions = self.centroids(user_cluster)
+    km = npkmeans.kmeans(preprocessing.load_data("u.data", 1), 100)
+    km.npkmeans.kCluster()
+    user_cluster = npkmeans.cluster_num(user_id)
+    predictions = npkmeans.centroids(user_cluster)
     return predictions
 
 # Evaluate accuracy of predictions
@@ -30,9 +32,9 @@ def calculate (kmeans_matrix, test_matrix):
     "Finds the average rmsd for all users"
     average_rmsd = 0.0
     for test_user in test_matrix:
-        actual = text_matrix[user]
-        for mean in matrix:
-            predictions = matrix[find_centroid(test_user)]
+        actual = test_matrix[test_user]
+        for mean in kmeans_matrix:
+            predictions = kmeans_matrix[find_centroid(test_user)]
             average_rmsd = average_rmsd+(one_user_rmsd (predictions, actual))
     final_evaluation = average_rmsd/(len(test_matrix))
     print final_evaluation
