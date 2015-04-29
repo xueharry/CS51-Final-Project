@@ -14,7 +14,7 @@ def load_data(file_name, npy, path=os.getcwd()+'/data/ml-100k/'):
     num_movies = len(np.unique(df[['movie']].values))
 
     # Matrix of size num_users x num_movies (rows x cols)
-    matrix = [[3 for _ in range(1682)] for _ in range(943)]
+    matrix = [[0 for _ in range(1682)] for _ in range(943)]
 
     ### Update the average rating for user, normalize to remove bias 
 
