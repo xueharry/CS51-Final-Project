@@ -28,7 +28,7 @@ while True:
         break 
 
 m = get_recommendations.top_movies(get_recommendations.average_ratings(get_recommendations.get_sim_users_centroids(get_recommendations.get_sim_users(age, gender.upper(), occupation.lower()))))
-return m
+print(m)
 
 #get_recommendations.get_top_ten(age, gender.upper(), occupation.lower())
 
