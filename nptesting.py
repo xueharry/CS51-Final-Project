@@ -1,7 +1,6 @@
 import math
 import random
 import preprocessing
-import testing_preprocessing
 from npkmeans import *
 import sys
 import numpy as np
@@ -42,7 +41,7 @@ def calculate ():
     centroids = kmeans_return[1]
 
     total_rmsd = 0.0
-    test_matrix = testing_preprocessing.load_data("u1.test", 1)
+    test_matrix = preprocessing.testing_load_data("u1.test", 1)
     number_test_users = 0
     for test_user in test_matrix:
         actual = test_matrix[test_user-1]

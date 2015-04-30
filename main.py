@@ -1,21 +1,36 @@
+#import get_recommendations
+
 # Get user's age and check for validity
 while True:
     try:
-        age = int(input("Please enter your age: "))
+        age = int(raw_input("Please enter your age (between 18 and 65): "))
     except ValueError:
-        print("Please print a valid age!: ")
         continue
-    if age <= 0 or age > 100:
-    	print("Please enter a valid age!: ")
-    else:
+    if age in (18, 65):
         break
 
 # Get user's gender and check for validity
 while True:
-	try:
-		gender = input("Please enter your gender (M/F): ")
+    try:
+        gender = str(raw_input("Please enter your gender (M or F): "))
+    except ValueError:
+        continue
+    if gender.upper() in ('M', 'F'):
+        break
 
 # Get user's occupation and check for validity
 while True:
-	try:
-		occupation = input("Please enter your occupation: (administrator artist doctor educator engineer entertainment executive healthcare homemaker lawyer librarian marketing none other programmer retired salesman scientist student technician writer: ")
+    try:
+        occupation = str(raw_input("Please enter your occupation (administrator artist doctor educator engineer entertainment executive healthcare homemaker lawyer librarian marketing none other programmer retired salesman scientist student technician writer): "))
+    except ValueError:
+        continue
+    if occupation.lower() in ('administrator', 'artist', 'doctor', 'educator', 'engineer', 'entertainment', 'executive', 'healthcare', 'homemaker', 'lawyer', 'librarian', 'marketing', 'none', 'other', 'programmer', 'retired', 'salesman', 'scientist', 'student', 'technician', 'writer'):
+        break 
+
+#get_recommendations.get_top_ten(age, gender.upper(), occupation.lower())
+
+
+
+#Given a list of movie ratings
+#Find indexes of top ten
+#Return titles
