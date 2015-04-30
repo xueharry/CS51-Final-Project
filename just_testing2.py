@@ -3,7 +3,7 @@ import math
 import numpy as np
 import pandas as pd
 
-def load_data(path=os.getcwd()+'/data/ml-100k/'):
+'''def load_data(path=os.getcwd()+'/data/ml-100k/'):
 
     # Read in file
     rnames = ['user', 'movie', 'rating', 'timestamp']
@@ -26,4 +26,24 @@ def load_data(path=os.getcwd()+'/data/ml-100k/'):
     matrix = np.array(m)
     return matrix
   
+'''
+import numpy as np 
+import math
+import random
+'''import NPTEST_PROCESSING SEPARATE FILE'''
+'''import NPKMEANS SEPARATE FILE'''
+import sys
+import numpy as np
+x = np.array([1,5,3])
+y = np.array([2,4,1])
 
+
+
+def rmsd (m1, m2): 
+ return np.sqrt((((m1.astype(float))-(m2.astype(float)))**2)/2)
+
+def clean_up (x,y):
+  for i,(a,b) in enumerate(zip(x,y)): 
+        print i,a,b
+                      
+   

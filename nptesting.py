@@ -18,15 +18,15 @@ def find_centroid (user_id):
 # Evaluate accuracy of predictions
 def rmsd_element (num1, num2):
     "Finds the rmsd between two movie ratings"
-    addition = 0.0
-    return ((num1.astype(float))-(num2.astype(float)))**2
+     return ((num1.astype(float))-(num2.astype(float)))**2
       
 def one_user_rmsd (m1, m2):
     "Finds the average rmsd for all of one user's movie ratings"
+    addition = 0.0
     for index, (a, b) in enumerate(zip(m1, m2)):
-        if b != 0:
+        if b <> 0:
             addition = addition+rmsd_element(a, b)
-            ++i
+            i=i+1
         rmsd_inside = addition/i
         rmsd = np.sqrt(rmsd_inside)
         return rmsd
