@@ -13,20 +13,20 @@ class kmeans:
   		self.num_movies = len(self.data[0]) 
     
   		# List of cluster numbers, initalized randomly 
-  		self.cluster_num = np.random.randint(0, k, size=self.num_users)
+  		self.cluster_num = np.random.randint(0, self.k, size=self.num_users)
     
   		# Initialize centroids to zero
-  		self.centroids = np.zeros((k,self.data.shape[1]))
+  		self.centroids = np.zeros((self.k, self.data.shape[1]))
 
 	def updateCentroids(self):
 		"Update the centroid of each cluster"
 		for c in xrange(self.k):
-	            self.centroids[c] = np.mean([self.data[p] for p in xrange(self.num_users) if self.cluster_num[p]==c], axis=0)
+	            self.centroids[c] = np.mean([self.data[u] for u in xrange(self.num_users) if self.cluster_num[u] == c], axis=0)
 
 	def assignPointsToCluster(self):
 	       "Assign each of the points to cluster"
 	       self.old_cluster_num = self.cluster_num
-	       self.cluster_num = np.array([np.argmin([np.linalg.norm(p-c) for c in self.centroids]) for p in self.data])
+	       self.cluster_num = np.array([np.argmin([np.linalg.norm(u-c) for c in self.centroids]) for u in self.data])
 	       
 	def kCluster(self):
 		"Performs clustering"
@@ -48,7 +48,7 @@ class kmeans:
 		return (self.cluster_num, self.centroids)
 
 # Run k-means (move this to separate file later)
-# km = kmeans(preprocessing.load_data("u.data", 1, 3), 100)
-# km.kCluster()
+km = kmeans(preprocessing.load_data("u.data", 1), 22)
+km.kCluster()
 
 
