@@ -79,9 +79,3 @@ def movie_load_data(file_name, path=os.getcwd()+'/data/ml-100k/'):
     dflist = df.values.tolist()
 
     return dflist
-
-def top_movies(movie_id):
-    movie_table = preprocessing.movie_load_data("u.item")
-    top_movies = [movie_table[key+1][1] for key in movie_id]
-
-    return top_movies
