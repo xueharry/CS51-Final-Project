@@ -33,7 +33,8 @@ class kmeans:
 		
 		# Flag for whether clustering is done
 		done = False
-
+                
+                print("K-means algorithm running...")
 		while not done:
 			self.updateCentroids()
 			self.assignPointsToCluster()
@@ -44,11 +45,7 @@ class kmeans:
 			if changes == 0:
 				done = True
 			print("Changes: %d" % changes)
-		print self.cluster_num
-		return (self.cluster_num, self.centroids)
 
-# Run k-means (move this to separate file later)
-km = kmeans(preprocessing.load_data("u.data", 1), 22)
-km.kCluster()
+		return (self.cluster_num, self.centroids)
 
 

@@ -6,7 +6,7 @@ while True:
         age = int(raw_input("Please enter your age (between 18 and 65): "))
     except ValueError:
         continue
-    if age in (18, 65):
+    if age in range(18, 66):
         break
 
 # Get user's gender and check for validity
@@ -27,13 +27,15 @@ while True:
     if occupation.lower() in ('administrator', 'artist', 'doctor', 'educator', 'engineer', 'entertainment', 'executive', 'healthcare', 'homemaker', 'lawyer', 'librarian', 'marketing', 'none', 'other', 'programmer', 'retired', 'salesman', 'scientist', 'student', 'technician', 'writer'):
         break 
 
-m = get_recommendations.top_movies(get_recommendations.average_ratings(get_recommendations.get_sim_users_centroids(get_recommendations.get_sim_users(age, gender.upper(), occupation.lower()))))
-print(m)
+# Get number of movies and check for validity
+while True:
+    try:
+        n = int(raw_input("Please enter number of movie recommendations (between 1 and 20): "))
+    except ValueError:
+        continue
+    if n in range(1, 21):
+        break
 
-#get_recommendations.get_top_ten(age, gender.upper(), occupation.lower())
+movies = get_recommendations.top_movies(n,get_recommendations.sim_users_ratings(age, gender.upper(), occupation.lower())) 
 
-
-
-#Given a list of movie ratings
-#Find indexes of top ten
-#Return titles
+print(movies)

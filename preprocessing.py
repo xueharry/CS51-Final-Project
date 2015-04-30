@@ -25,13 +25,12 @@ def load_data(file_name, npy, path=os.getcwd()+'/data/ml-100k/'):
 
     # Check for which version of kmeans to use
     if npy == 1:
-        print('numpy kmeans')
         m = np.array(matrix)
         m.astype(float)
     else:
-        print('slow kmeans')
         m = matrix
     
+    print('Data loaded:')
     return m
     
 

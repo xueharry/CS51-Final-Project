@@ -1,9 +1,6 @@
-import math
-import random
+import numpy as np
 import preprocessing
 from npkmeans import *
-import sys
-import numpy as np
 
 # Evaluate accuracy of predictions
 def rmsd_element (num1, num2):
