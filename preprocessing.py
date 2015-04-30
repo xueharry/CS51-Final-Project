@@ -23,13 +23,14 @@ def load_data(file_name, npy, path=os.getcwd()+'/data/ml-100k/'):
         rating = df['rating'][index] 
         matrix[user-1][movie-1] = rating
 
-    if npy==1:
+    # Check for which version of kmeans to use
+    if npy == 1:
         print('numpy kmeans')
         m = np.array(matrix)
         m.astype(float)
     else:
         print('slow kmeans')
-        m=matrix
+        m = matrix
     
     return m
     
