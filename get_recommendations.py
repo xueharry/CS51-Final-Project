@@ -33,9 +33,11 @@ def average_ratings(users_list):
     # Return list of sorted movie indexes from highest rated to lowest rated
     return sorted(avgdict, key=avgdict.get, reverse=True)
 
-def top_movies(movie_id):
+def top_movies(movies):
+    top_ten = [movies[m] for m in xrange(0,9)]
+    print top_ten
     movie_table = preprocessing.movie_load_data("u.item")
-    top_movies = [movie_table[movie_id+1][1] for m in xrange(0,9)]
+    top_movies = [movie_table[m][1] for m in top_ten]
     return top_movies
     
     

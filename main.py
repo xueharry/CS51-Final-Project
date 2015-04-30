@@ -1,4 +1,4 @@
-#import get_recommendations
+import get_recommendations
 
 # Get user's age and check for validity
 while True:
@@ -26,6 +26,9 @@ while True:
         continue
     if occupation.lower() in ('administrator', 'artist', 'doctor', 'educator', 'engineer', 'entertainment', 'executive', 'healthcare', 'homemaker', 'lawyer', 'librarian', 'marketing', 'none', 'other', 'programmer', 'retired', 'salesman', 'scientist', 'student', 'technician', 'writer'):
         break 
+
+m = get_recommendations.top_movies(get_recommendations.average_ratings(get_recommendations.get_sim_users_centroids(get_recommendations.get_sim_users(age, gender.upper(), occupation.lower()))))
+return m
 
 #get_recommendations.get_top_ten(age, gender.upper(), occupation.lower())
 
