@@ -22,7 +22,7 @@ def one_user_rmsd (m1, m2):
         # if np.nonzero(b):
         #if 0 in (a,b):
             addition = addition+rmsd_element(zipped[0], zipped[1])
-            addition = addition+rmsd_element(a, b)
+            # addition = addition+rmsd_element(a, b)
             i = i+1
         else:
             continue

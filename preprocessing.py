@@ -35,7 +35,7 @@ def load_data(file_name, npy, path=os.getcwd()+'/data/ml-100k/'):
     return m
     
 
-def testing_load_data(file_name, path=os.getcwd()+'/data/ml-100k/'):
+def testing_load_data(file_name, npy, path=os.getcwd()+'/data/ml-100k/'):
 
     # Read in file
     rnames = ['user', 'movie', 'rating', 'timestamp']
