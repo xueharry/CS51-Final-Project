@@ -18,9 +18,12 @@ def one_user_rmsd (m1, m2):
     for index, (a, b) in enumerate(zip(m1, m2)):
         zipped = (a, b)
         if zipped[1] != 0:
+        # if b != 0:
+        # if b.any != 0:
         # if np.nonzero(b):
         #if 0 in (a,b):
             addition = addition+rmsd_element(zipped[0], zipped[1])
+            addition = addition+rmsd_element(a, b)
             i = i+1
         else:
             continue
