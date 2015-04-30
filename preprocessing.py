@@ -59,11 +59,11 @@ def testing_load_data(file_name, path=os.getcwd()+'/data/ml-100k/'):
 
 def user_load_data(file_name, path=os.getcwd()+'/data/ml-100k/'):
 
-    #Read in file 
+    # Read in file 
     rnames = ['age', 'gender', 'occupation', 'zipcode']
-    df = pd.read_csv('u.user', delimiter = '|', header=None, names = rnames)
-
-    m = np.array(df)
-
-    return m
+    df = pd.read_csv(path + file_name, delimiter = '|', header=None, names = rnames)
+    
+    dflist = df.values.tolist()
+    # Convert to list
+    return dflist
 
