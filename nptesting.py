@@ -16,13 +16,14 @@ def one_user_rmsd (m1, m2):
     addition = 0.0
     i = 0
     for index, (a, b) in enumerate(zip(m1, m2)):
-        if b.any != 0:
+        zipped = (a, b)
+        if zipped[1] != 0:
         # if np.nonzero(b):
         #if 0 in (a,b):
-            continue
-        else:
-            addition = addition+rmsd_element(a, b)
+            addition = addition+rmsd_element(zipped[0], zipped[1])
             i = i+1
+        else:
+            continue
     if i==0:
         rmsd_inside = 0
     else:
