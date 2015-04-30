@@ -51,6 +51,7 @@ def testing_load_data(file_name, path=os.getcwd()+'/data/ml-100k/'):
         rating = df['rating'][index] 
         matrix[user-1][movie-1] = rating
 
+    # Convert to numpy array
     m = np.array(matrix)
     m.astype(float)
 
@@ -61,9 +62,26 @@ def user_load_data(file_name, path=os.getcwd()+'/data/ml-100k/'):
 
     # Read in file 
     rnames = ['age', 'gender', 'occupation', 'zipcode']
-    df = pd.read_csv(path + file_name, delimiter = '|', header=None, names = rnames)
+    df = pd.read_csv(path+file_name, delimiter = '|', header=None, names = rnames)
     
-    dflist = df.values.tolist()
     # Convert to list
+    dflist = df.values.tolist()
+    
     return dflist
 
+
+def movie_load_data(file_name, path=os.getcwd()+'/data/ml-100k/'):
+
+    # Read in file
+    df = pd.read_csv(path+file_name, delimiter = '|', header=None)
+
+    # Convert to list
+    dflist = df.values.tolist()
+
+    return dflist
+
+def top_movies(movie_id):
+    movie_table = preprocessing.movie_load_data("u.item")
+    top_movies = [movie_table[key+1][1] for key in movie_id]
+
+    return top_movies
