@@ -7,30 +7,17 @@ import numpy as np
 
 # Evaluate accuracy of predictions
 def rmsd_element (num1, num2):
-<<<<<<< HEAD
-    "Finds the rmsd between two movie ratings"
-     return ((num1.astype(float))-(num2.astype(float)))**2
-=======
     "Finds the inside of rmsd formula between two movie ratings"
     return ((float(num1))-(float(num2)))**2
->>>>>>> e9aa722c81697abb364d5e0b18f652fdbc5dfc27
       
 def one_user_rmsd (m1, m2):
     "Finds the average rmsd for all of one user's movie ratings"
     addition = 0.0
-<<<<<<< HEAD
-    for index, (a, b) in enumerate(zip(m1, m2)):
-        if b <> 0:
-            addition = addition+rmsd_element(a, b)
-            i=i+1
-        rmsd_inside = addition/i
-        rmsd = np.sqrt(rmsd_inside)
-        return rmsd
-=======
     i = 0
     for index, (a, b) in enumerate(zip(m1, m2)):
         zipped = (a, b)
-        if zipped[1] != 0:
+        if b <> 0:
+        # if zipped[1] != 0:
         # if b != 0:
         # if b.any != 0:
         # if np.nonzero(b):
@@ -46,7 +33,6 @@ def one_user_rmsd (m1, m2):
         rmsd_inside = addition/float(i)
     user_rmsd = np.sqrt(rmsd_inside)
     return user_rmsd
->>>>>>> e9aa722c81697abb364d5e0b18f652fdbc5dfc27
 
 def calculate ():
     "Finds the average rmsd for all users"
@@ -59,7 +45,9 @@ def calculate ():
     test_matrix = preprocessing.testing_load_data("u1.test", 1)
     number_test_users = 0
     for test_user in test_matrix:
-        actual = test_matrix[test_user-1]
+        actual = test_matrix[0][test_user-1]
+        print "actual"
+        print actual
         predictions = centroids[user_cluster[test_user-1]]
         one_rmsd = one_user_rmsd (predictions, actual)
         total_rmsd = total_rmsd+one_rmsd
