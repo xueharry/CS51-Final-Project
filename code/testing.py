@@ -9,18 +9,18 @@ def rmsd_element (num1, num2):
       
 def one_user_rmsd (m1, m2):
     "Finds the average rmsd for all of one user's movie ratings"
-    addition = 0.0
+    sum = 0.0
     i = 0
     for index, (a, b) in enumerate(zip(m1, m2)):
         if b <> 0:
-            addition = addition+rmsd_element(a, b)
+            sum = sum+rmsd_element(a, b)
             i = i+1
         else:
             continue
     if i==0:
         rmsd_inside = 0
     else:
-        rmsd_inside = addition/float(i)
+        rmsd_inside = sum/float(i)
     user_rmsd = np.sqrt(rmsd_inside)
     return user_rmsd
 
