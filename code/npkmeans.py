@@ -44,7 +44,7 @@ class kmeans:
 			changes = np.sum((self.old_cluster_num - self.cluster_num) != 0)
 			if changes == 0:
 				done = True
-		print("Changes: %d" % changes)
+			print("Changes: %d" % changes)
 
 		return (self.cluster_num, self.centroids)
 
