@@ -1,5 +1,8 @@
 import preprocessing
 import numpy as np
+import warnings
+
+warnings.simplefilter("error")
 
 class kmeans:
 	"Implementation of kmeans algorithm"

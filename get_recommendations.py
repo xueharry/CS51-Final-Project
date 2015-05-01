@@ -22,8 +22,26 @@ def sim_users_ratings(age, gender, occupation):
     for position, user in enumerate(users):
 	if (age, gender, occupation) == (user[0], user[1], user[2]):
 		sim_users.append(position)
+    print sim_users
 		
     # Check whether sim_users is empty, if it is, then....
+    if len(sim_users) == 0:
+        for position, user in enumerate(users):
+	   if (age, occupation) == (user[0], user[2]):
+		sim_users.append(position)
+    print sim_users
+			
+    if len(sim_users) == 0:
+        for position, user in enumerate(users):
+	   if (age, gender) == (user[0], user[1]):
+		sim_users.append(position)
+    print sim_users
+       	
+    if len(sim_users) == 0:
+        for position, user in enumerate(users):
+	   if age == user[0]:
+		sim_users.append(position)	
+    print sim_users
 
     # Find centroids of similar users 
     user_list = np.array([centroids[clusters[u]] for u in sim_users])
