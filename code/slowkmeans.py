@@ -1,10 +1,14 @@
+# Our initial implementation of kmeans, which took an hour to run.
+# Do not use this in grading.
+# Version actually used in final implementation can be found in npkmeans.py
+
 import math
 import random
 import preprocessing
 import sys
 
 class kmeans:
-	"Implementation of kmeans algorithm"
+	"Implementation of kmeans algorithm (NOT USED IN ACTUAL IMPLEMENTATION)"
 
 	def __init__(self, matrix, k):
 		"Initializer takes in a user-movie matrix and the number of clusters"
@@ -17,7 +21,6 @@ class kmeans:
 		self.num_movies = len(self.data[0]) 
 
 		# List of cluster numbers, all initialized as -1
-		# TODO: TEST WHETHER THERE ARE ANY -1 IN LIST
 		self.cluster_num = [-1 for i in range(self.num_users)]
 
 		# Initialize with random centroids
@@ -103,9 +106,5 @@ class kmeans:
 			print(self.cluster_num)
 		# Debugging purposes, check SSE
 		print("SSE: %f" % self.sse)
-
-# Run k-means (move this to separate file later)
-km = kmeans(preprocessing.load_data("u.data",0), 100)
-km.kCluster()
 
 
