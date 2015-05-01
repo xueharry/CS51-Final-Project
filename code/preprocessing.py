@@ -4,6 +4,8 @@ import numpy as np
 import pandas as pd
 
 def load_data(file_name, npy, path = os.path.dirname(os.getcwd()) + '/data/ml-100k/'):
+    "Loads data into matrix, filling in empty ratings with 3"
+    
     # Read in file
     rnames = ['user', 'movie', 'rating', 'timestamp']
     df = pd.read_table(path + file_name, sep = '\t', header = None, names = rnames)
@@ -34,6 +36,7 @@ def load_data(file_name, npy, path = os.path.dirname(os.getcwd()) + '/data/ml-10
     
 
 def testing_load_data(file_name, npy, path = os.path.dirname(os.getcwd()) + '/data/ml-100k/'):
+    "Loads data into matrix, filling in empty ratings with 0"
 
     # Read in file
     rnames = ['user', 'movie', 'rating', 'timestamp']
@@ -57,6 +60,7 @@ def testing_load_data(file_name, npy, path = os.path.dirname(os.getcwd()) + '/da
 
 
 def user_load_data(file_name, path = os.path.dirname(os.getcwd()) + '/data/ml-100k/'):
+    "Loads in user data"
 
     # Read in file 
     rnames = ['age', 'gender', 'occupation', 'zipcode']
@@ -69,6 +73,7 @@ def user_load_data(file_name, path = os.path.dirname(os.getcwd()) + '/data/ml-10
 
 
 def movie_load_data(file_name, path = os.path.dirname(os.getcwd()) + '/data/ml-100k/'):
+    "Loads in movie data"
 
     # Read in file
     df = pd.read_csv(path + file_name, delimiter = '|', header = None)
