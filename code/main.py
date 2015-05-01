@@ -36,6 +36,7 @@ while True:
     if n in range(1, 21):
         break
 
+# Get list of top n movies
 movies = get_recommendations.top_movies(n,get_recommendations.sim_users_ratings(age, gender.upper(), occupation.lower())) 
 
 print(movies)
