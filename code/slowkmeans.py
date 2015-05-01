@@ -12,7 +12,7 @@ class kmeans:
 
 	def __init__(self, matrix, k):
 		"Initializer takes in a user-movie matrix and the number of clusters"
-                self.data = matrix
+		self.data = matrix
 		self.k = k
 		self.iteration = 0
 		self.num_points_changed = 0 
@@ -26,7 +26,7 @@ class kmeans:
 		# Initialize with random centroids
 		random.seed()
 		self.centroids = [[self.data[rand][m] for m in range(self.num_movies)]
-							for rand in random.sample(range(self.num_users), self.k)]
+			for rand in random.sample(range(self.num_users), self.k)]
 		self.assignPointsToCluster()
 
 	def calcCentroid(self, clus):
@@ -35,26 +35,20 @@ class kmeans:
 		# Returns [0,3,4,...] the indices of users who are in cluster clus 
 		users = [i for i, j in enumerate(self.cluster_num) if j == clus]
 		if len(users) == 0:
-		    centroid = [self.data[random.randint(0,self.num_users-1)][m] for m in range(self.num_movies)]
+			centroid = [self.data[random.randint(0,self.num_users-1)][m] for m in range(self.num_movies)]
 		else:
-      		    # Returns [self.data[0],self.data[3]...] list of lists of movies for above users
-      		    users_list = [self.data[u] for u in users]
-                    #print("users_list")
-      		    #print(users_list)
-      		    # Calculate centroid by averaging ratings for each of the movies across users
-      		    # in the cluster
-      		    centroid = [float(sum(i)) / float(len(users_list)) for i in zip(*users_list)]
-        
-      		# Returns list of average ratings for each movie across cluster
-      		#print(centroid)
-      		return centroid
+			# Returns [self.data[0],self.data[3]...] list of lists of movies for above users
+			users_list = [self.data[u] for u in users]
+			# Calculate centroid by averaging ratings for each of the movies across users in the cluster
+			centroid = [float(sum(i)) / float(len(users_list)) for i in zip(*users_list)]
+
+		# Returns list of average ratings for each movie across cluster
+		return centroid
 
 	def updateCentroids(self):
 		"Update the centroid of each cluster"
-		# print(self.centroids)
 		self.centroids = [self.calcCentroid(c) for c in range(self.k)]
-                # print(self.centroids)
-                
+            
 	def assignPointToCluster(self,i):
 		"Assign point to cluster"
 		minRange = float(sys.maxsize) 
@@ -69,25 +63,24 @@ class kmeans:
 		# Keep track of number of points changed
 		if clusterNum != self.cluster_num[i]:
 			self.num_points_changed += 1
-
 		# Update sum of square error
 		self.sse += minRange * minRange 
 
 		return clusterNum
 
 	def assignPointsToCluster(self):
-	       "Assign each of the points to cluster"
-	       self.num_points_changed = 0
-	       self.sse = 0
-	       self.cluster_num = [self.assignPointToCluster(i)
-	    					for i in range(self.num_users)]
+		"Assign each of the points to cluster"
+		self.num_points_changed = 0
+		self.sse = 0
+		self.cluster_num = [self.assignPointToCluster(i)
+			for i in range(self.num_users)]
 
 	def distance(self, u, c):
 		"Distance from user u to centroid c"
 		sum_squares = 0.0
 		for m in range(self.num_movies):
-	           sum_squares += pow(self.data[u][m] - self.centroids[c][m],2)
-                return math.sqrt(sum_squares)
+			sum_squares += pow(self.data[u][m] - self.centroids[c][m],2)
+		return math.sqrt(sum_squares)
 
 	def kCluster(self):
 		"Performs clustering"
@@ -104,7 +97,8 @@ class kmeans:
 			if float(self.num_points_changed) / float(self.num_users) < 0.01:
 				done = True
 			print(self.cluster_num)
-		# Debugging purposes, check SSE
+
+		# SSE for debugging purposes
 		print("SSE: %f" % self.sse)
 
 

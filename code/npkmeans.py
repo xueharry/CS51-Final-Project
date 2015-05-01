@@ -46,6 +46,6 @@ class kmeans:
 				done = True
 		print("Changes: %d" % changes)
 
-return (self.cluster_num, self.centroids)
+	return (self.cluster_num, self.centroids)
 
 
